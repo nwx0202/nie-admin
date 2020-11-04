@@ -6,13 +6,27 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    component: () => import('../views/Login')
+    redirect: '/index',
+    component: ()=> import('../views/Home'),
+    children: [
+      {
+        path: '/index',
+        name: 'Dashboard',
+        meta: '首页',
+        component: () => import('../views/Dashboard')
+      },
+      {
+        path: '/user',
+        name: 'User',
+        meta: '用户',
+        component: () => import('../views/Dashboard')
+      }
+    ]
   },
   {
-    path: '/index',
-    name: 'Dashboard',
-    component: () => import('../views/Dashboard')
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login')
   }
 ]
 

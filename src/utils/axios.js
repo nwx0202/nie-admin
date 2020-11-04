@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
-import store from '../../../touzi-admin/src/store';
 import {getToken} from './auth'
 
 // 创建axios实例
@@ -10,16 +9,16 @@ let service = axios.create({
 });
 
 // request拦截器
-service.interceptors.request.use(request => {
-  request.Header = {
-    'Authorization': 'Token' + getToken('TOken')
+service.interceptors.request.use(req => {
+  req.headers = {
+    'Authorization': 'Token' + getToken('Token')
   }
-  return request;
+  return req;
 }, error => {
   Promise.reject(error);
 });
 
-// response拦截器
+// response拦截器 TODO：重新登录需要用户信息
 service.interceptors.response.use(response => {
   const res = response.data;
   if (res.code !== 200) {
@@ -36,9 +35,9 @@ service.interceptors.response.use(response => {
         confirmButtonText: '重新登录',
         cancelButtonText: '取消'
       }).then(() => {
-        store.dispatch('Logout').then(() => {
-          location.reload();
-        });
+        // store.dispatch('Logout').then(() => {
+        //   location.reload();
+        // });
       });
     }
     return Promise.reject('error');
