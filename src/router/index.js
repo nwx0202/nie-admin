@@ -16,10 +16,30 @@ const routes = [
         component: () => import('../views/Dashboard')
       },
       {
-        path: '/user',
-        name: 'User',
-        meta: '用户',
-        component: () => import('../views/Dashboard')
+        path: '/system',
+        name: 'System',
+        meta: '系统管理',
+        component: () => import('../views/System'),
+        children: [
+          {
+            path: '/user',
+            name: 'User',
+            meta: '用户管理',
+            component: () => import('../views/System/User')
+          },
+          {
+            path: '/role',
+            name: 'Role',
+            meta: '角色管理',
+            component: () => import('../views/System/Role')
+          },
+          {
+            path: '/menu',
+            name: 'Menu',
+            meta: '菜单管理',
+            component: () => import('../views/System/Menu')
+          },
+        ]
       }
     ]
   },

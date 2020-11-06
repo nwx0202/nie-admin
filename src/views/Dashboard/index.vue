@@ -1,10 +1,12 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard" v-loading="loading">
+
+    <!-- 卡片区 -->
     <el-row class="card-wrap">
       <el-col v-for="(card, index) in cards" :key="index">
         <el-card shadow="hover">
           <div class="card-icon">
-            
+            <!-- TODO：缺少card-icon -->
           </div>
           <div class="card-info">
             <h5>{{card.name}}</h5>
@@ -13,15 +15,28 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <!-- 曲线图区 -->
+    <div class="area-chart-warp">
+      <AreaChart />
+    </div>
+
+    <!-- 饼图区 -->
   </div>
 </template>
 
 <script>
+import AreaChart from './components/AreaChart'
 import {getCards} from '@/api/dashboard'
+
 export default {
   name: 'Dashboard',
+  components: {
+    AreaChart
+  },
   data() {
     return {
+      loading: false,
       cards: []
     }
   },
@@ -32,7 +47,9 @@ export default {
   methods: {
     // 获取卡片数据
     loadCards() {
+      this.loading = true;
       getCards().then(res => {
+        this.loading = false;
         if (!res) return;
         this.cards = res.cards;
       });
@@ -78,6 +95,10 @@ export default {
       font-weight: 600;
 
     }
+  }
+
+  .area-chart-warp {
+    margin-top: 20px;
   }
 }
 </style>

@@ -13,15 +13,19 @@
       <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-sunny"></i>
-          <span>用户管理</span>
+          <span>系统管理</span>
         </template>
         <el-menu-item index="2-1">
           <i class="el-icon-sunrise-1"></i>
-          <span>用户注册</span>
+          <span>用户管理</span>
         </el-menu-item>
         <el-menu-item index="2-2">
           <i class="el-icon-sunrise"></i>
-          <span>权限管理</span>
+          <span>角色管理</span>
+        </el-menu-item>
+        <el-menu-item index="2-3">
+          <i class="el-icon-sunrise"></i>
+          <span>菜单管理</span>
         </el-menu-item>
       </el-submenu>
     </el-menu>

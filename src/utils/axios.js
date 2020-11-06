@@ -5,7 +5,7 @@ import {getToken} from './auth'
 // 创建axios实例
 let service = axios.create({
   baseURL: process.env.BASE_URL,
-  timeout: 3000
+  timeout: 1000
 });
 
 // request拦截器
